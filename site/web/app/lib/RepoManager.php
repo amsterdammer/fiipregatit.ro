@@ -1,49 +1,38 @@
 <?php
-use Repository\GhiduriEducativeRepository;
-use Repository\CampaniiRepository;
-use Repository\LinkuriUtileRepository;
+use Repository\GuideRepository;
+use Repository\CampaignRepository;
+use Repository\LinkRepository;
 
-class RepoManager
-{
-    /**
-     * Repositories 'cache'
-     * @var array
-     */
-    static private $repositories = [];
+final class RepoManager {
+    private function __construct() {}
 
-    /**
-     * @return GhiduriEducativeRepository
-     */
-    public static function getGhidurEducativeRepository()
-    {
-        if (empty(self::$repositories[App::POST_TYPE_GHID_EDUCATIV])) {
-            self::$repositories[App::POST_TYPE_GHID_EDUCATIV] = new GhiduriEducativeRepository();
-        }
-
-        return self::$repositories[App::POST_TYPE_GHID_EDUCATIV];
+    public static function getGuideRepository(): GuideRepository {
+        return self::getRepository(App::POST_TYPE_GUIDE);
     }
 
-    /**
-     * @return CampaniiRepository
-     */
-    public static function getCampaniiRepository()
-    {
-        if (empty(self::$repositories[App::POST_TYPE_CAMPANIE])) {
-            self::$repositories[App::POST_TYPE_CAMPANIE] = new CampaniiRepository();
-        }
-
-        return self::$repositories[App::POST_TYPE_CAMPANIE];
+    public static function getCampaignRepository(): CampaignRepository {
+        return self::getRepository(App::POST_TYPE_CAMPAIGN);
     }
 
-    /**
-     * @return LinkuriUtileRepository
-     */
-    public static function getLinkuriUtileRepository()
-    {
-        if (empty(self::$repositories[App::POST_TYPE_LINK_UTIL])) {
-            self::$repositories[App::POST_TYPE_LINK_UTIL] = new LinkuriUtileRepository();
-        }
+    public static function getLinkRepository(): LinkRepository {
+        return self::getRepository(App::POST_TYPE_LINK);
+    }
 
-        return self::$repositories[App::POST_TYPE_LINK_UTIL];
+    private static function getRepository(
+      string $repositoryKey
+    )/*: AbstractRepository*/ {
+      switch ($repositoryKey) {
+        case App::POST_TYPE_LINK:
+          return LinkRepository::get();
+        case App::POST_TYPE_GUIDE:
+          return GuideRepository::get();
+        case App::POST_TYPE_CAMPAIGN:
+          return CampaignRepository::get();
+      }
+
+      throw new Exception(sprintf(
+        'Invalid repository type `%s`',
+        $repositoryKey
+      ));
     }
 }

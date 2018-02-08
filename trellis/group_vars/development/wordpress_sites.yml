@@ -3,17 +3,15 @@
 # Define accompanying passwords/secrets in group_vars/development/vault.yml
 
 wordpress_sites:
-  fiipregatit.ro:
+  dev.fiipregatit.ro:
     site_hosts:
-      - canonical: fiipregatit.dev
-        redirects:
-          - www.fiipregatit.dev
+      - canonical: dev.fiipregatit.ro
     local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
-    admin_email: admin@fiipregatit.dev
+    admin_email: admin@dev.fiipregatit.ro
     multisite:
       enabled: false
     ssl:
-      enabled: false
+      enabled: true
       provider: self-signed
     cache:
       enabled: false

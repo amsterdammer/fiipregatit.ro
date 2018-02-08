@@ -1,12 +1,13 @@
 <?php
 
-class App
-{
-    const POST_TYPE_GHID_EDUCATIV = 'ghid_educativ';
-    const POST_TYPE_CAMPANIE = 'campanie';
-    const POST_TYPE_LINK_UTIL = 'link_util';
+final class App {
+  private function __construct() {}
 
-    const HOMEPAGE_GHID_COUNT = 10;
-    const HOMEPAGE_CAMPANII_COUNT = 5;
-    const LINKURI_UTILE_COUNT = 100;
+  const POST_TYPE_GUIDE = 'ghid';
+  const POST_TYPE_CAMPAIGN = 'campanie';
+  const POST_TYPE_LINK = 'link_util';
+
+  const HOMEPAGE_GUIDE_COUNT = 12;
+  const HOMEPAGE_CAMPAIGNS_COUNT = 3;
+  const LINK_COUNT = 7;
 }

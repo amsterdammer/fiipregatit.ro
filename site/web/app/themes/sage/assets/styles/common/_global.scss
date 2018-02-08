@@ -1,1 +1,696 @@
+html, body {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  counter-reset: element;
+}
+/*
+@include media-breakpoint-up(sm) {
+  html {
+    font-size: 1.2rem;
+  }
+}
 
+@include media-breakpoint-up(md) {
+  html {
+    font-size: 1.4rem;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  html {
+    font-size: 1.6rem;
+  }
+}
+*/
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif;
+}
+
+.main {
+  background: #e4e4e4;
+  padding: 0 !important;
+}
+
+.jumbotron-fluid {
+  width: 100%;
+  height: 480px;
+  background: url('../images/header.jpg');
+  background-size: cover;
+  margin-bottom: 0;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  padding: 0;
+}
+
+.jumbotron-fluid.small-jumbotron {
+    height: 200px;
+}
+
+.jumbotron-fluid::before {
+	content:" ";
+	display: block;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+.jumbotron-fluid .container {
+  position: relative;
+  margin-top: 135px;
+}
+
+.jumbotron-fluid.small-jumbotron .container {
+  margin-top: 70px;
+}
+
+.jumbotron-fluid h1 {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.jumbotron-fluid h1.subtitle,
+.jumbotron-fluid h3 {
+  font-weight: 300;
+}
+
+.jumbotron-fluid h3::before,
+.jumbotron-fluid h3::after {
+  content: "";
+  display: inline-block;
+  width: 60px;
+  border-bottom: 2px solid #fff;
+  margin: 5px 15px;
+}
+
+.jumbotron-fluid .input-group {
+  border: 12px solid rgba(255, 255, 255, 0.4);
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 35px;
+}
+
+.jumbotron-fluid input {
+  border-radius: 0;
+  border: 1px solid #999;
+  font-style: italic;
+  background: #ffffcc;
+  color: #666;
+}
+
+.jumbotron-fluid button {
+  border-radius: 0;
+  border: 1px solid #999;
+  background: #ffcc00;
+  color: #000;
+}
+
+h2 {
+  margin-bottom: 60px;
+  text-transform: uppercase;
+  position: relative;
+  text-align: center;
+}
+
+h2:after {
+  content: ' ';
+  display: block;
+  border-bottom: 5px solid #993333;
+  width: 100px;
+  margin: 0 auto;
+  margin-top: 25px;
+  margin-bottom: 15px;
+}
+
+#ghiduri-section,
+#plan-personal-section,
+#campanii-section,
+#app-section {
+  padding-top: 150px;
+}
+
+.all-button {
+  margin: 60px auto;
+  text-transform: uppercase;
+  color: #fff;
+  background: #993333;
+  font-size: 12px;
+  font-weight: bold;
+  border-width: 0;
+  border-radius: 3px;
+  height: 35px;
+  line-height: 37px;
+  padding: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.all-button:hover {
+  background: #DC3545;
+}
+
+.all-button svg {
+  margin-left: 7px;
+}
+
+.outline-button {
+  font-size: 14px;
+  color: #993333;
+  border: 1px solid #ccc;
+  background: #ebebeb;
+  cursor: pointer;
+  height: 35px;
+  margin-top: 15px;
+}
+
+.outline-button:hover {
+  background: #933;
+  color: #fff;
+  border-color: #933;
+}
+
+#ghiduri-section {
+  padding-bottom: 25px;
+}
+
+#ghiduri-section h3 {
+  text-transform: uppercase;
+  font-family: 'Roboto', serif;
+  font-weight: bold;
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #333;
+}
+
+#ghiduri-section .guide-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 1px solid #999;
+  margin: 0 auto;
+  background-size: 60px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: 25px;
+  background-color: #fff;
+}
+
+#ghiduri-section .ghid-content {
+  border: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  height: 220px;
+  margin-bottom: 20px;
+}
+
+#ghiduri-section .ghid-content:hover {
+  background: #FFE9EB;
+  border-color: #933;
+}
+
+#ghiduri-section .ghid-row {
+  margin-bottom: 20px;
+}
+
+#campaign-section {
+    margin-top: 100px;
+}
+
+#campaign-section .campaign-photo {
+  width: 100%;
+  height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-color: #333;
+}
+
+#campaign-section .campaign-box {
+    margin-bottom: 35px;
+    flex-basis: unset;
+}
+
+#campaign-section .campaign-content {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+#campaign-section .campaign-content h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    text-align: left;
+    font-weight: bold;
+}
+
+#campaign-section .campaign-content .campaign-extras {
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+}
+
+#campaign-section .campaign-content .campaign-date {
+  font-size: 12px;
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+}
+
+#summary-section {
+  padding: 40px 0;
+  background: #465d86;
+  color: #fff;
+  background-image: url(../images/blue_band.png);
+  height: 270px;
+  display: flex;
+  align-items: center;
+}
+
+#summary-section .col {
+  text-align: center;
+}
+
+#summary-section .count span {
+  display: block;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 15px;
+  margin-bottom: -10px;
+}
+
+#plan-personal-section {
+  background: #fff;
+}
+
+#plan-personal-section .headline {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+#plan-personal-section .big-red {
+  color: #993333;
+}
+
+#plan-personal-section div:nth-of-type(3) {
+  margin-top: 10px;
+}
+
+#plan-personal-section .element::before {
+  counter-increment: element;
+  content: counter(element) '. ';
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#plan-personal-section .img-container {
+  text-align: center;
+}
+
+#plan-personal-section img {
+    margin: 0 auto;
+    max-height: 230px;
+}
+
+#app-section {
+  padding-bottom: 150px;
+  background: #fff;
+}
+
+#app-section h2 {
+  font-weight: normal;
+  text-align: left;
+  text-transform: none;
+  margin-bottom: 20px;
+}
+
+#app-section h2::after {
+  margin-left: 0;
+  margin-top: 20px;
+}
+
+#app-section .subtitle {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+#app-section .app-intro .row {
+  padding-left: 15px;
+}
+
+#app-section .app-intro img {
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+#app-section .app-intro .col {
+  max-width: 210px;
+  padding: 0px;
+  padding-right: 15px;
+}
+
+#guide-content {
+    margin-top: 80px;
+    margin-bottom: 100px;
+}
+
+#guide-content .small-menu {
+  text-align: center;
+  top: -40px;
+  font-family: Merriweather, serif;
+}
+
+#guide-content .small-menu .btn {
+  background: none;
+  border: 1px solid #999;
+  border-radius: 0;
+  color: #999;
+}
+
+#guide-content .small-menu .dropdown-item {
+  text-transform: capitalize;
+}
+
+#guide-content #accordion ul {
+  list-style: none;
+  counter-reset: section;
+  position: relative;
+  padding-left: 40px;
+}
+
+#guide-content #accordion ul li {
+  padding-bottom: 40px;
+}
+
+#guide-content #accordion ul li::before {
+  width: 25px;
+  left: 0;
+  position: absolute;
+  counter-increment: section;
+  content: counter(section);
+  border-radius: 50%;
+  background: #d03233;
+  color: #fff;
+  font-weight: 700;
+  height: 25px;
+  text-align: center;
+  border: 2px solid #fff;
+  z-index: 2;
+}
+
+#guide-content #accordion ul li::after {
+  content: '';
+  position: absolute;
+  border-left: 1px solid ;
+  left:12.5px;
+  bottom:0;
+  top: 5px;
+  height: 98%;
+}
+
+#guide-content #accordion ul li:last-child::after {
+  content: none;
+}
+
+#guide-content #accordion ul li:last-child {
+  padding-bottom:0
+}
+
+#guide-content #accordion .card-header {
+    padding: 0;
+}
+
+#guide-content #accordion .card-header button {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: initial;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  color: #d03233;
+  padding: .75rem 1.25rem;
+  text-transform: lowercase;
+  text-decoration: none;
+  transition: .7s transform fade-in;
+  background: none;
+  border-bottom: none;
+
+}
+
+#guide-content #accordion .card-header button::first-letter {
+  text-transform: uppercase;
+}
+
+#guide-content #accordion .card-header button:hover {
+  text-decoration: none;
+}
+
+#guide-content #accordion .card-header svg {
+  transition: .3s transform ease-in-out;
+  float: right;
+}
+
+#guide-content #accordion .card-header .collapsed svg {
+  transform: rotate(90deg);
+}
+
+#guide-content #accordion .card-header button.collapsed {
+  background: rgba(0,0,0,.03);
+  color: #333;
+}
+
+#guide-content #accordion .card-header {
+  background: none;
+  border-bottom: none;
+}
+
+#guide-content #accordion .card {
+  border: 1px solid #999;
+  border-radius: 0;
+}
+
+#guide-content .guide-sidebar {
+  padding-left: 50px;
+}
+
+#guide-content h3 {
+  text-transform: uppercase;
+  margin-top: 30px;
+  font-size: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #999;
+  display: inline-block;
+}
+
+#guide-content ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+#guide-content ul li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+#guide-content ul li a {
+  color: #333;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+#guide-content ul li a:hover {
+  color: #d03233;
+  text-decoration: none;
+  text-transform: capitalize;
+}
+
+#guide-content ul li a svg {
+  margin-right: 5px;
+}
+
+#guide-content h2 {
+  margin-bottom: 30px;
+}
+
+#guide-content .download-guide {
+  margin-top: 50px;
+  padding-left: 35px;
+}
+
+#guide-content .download-guide svg {
+  color: #d03233;
+  margin-right: 15px;
+}
+
+#guide-content .download-guide a {
+  color: #333;
+  text-transform: uppercase;
+}
+
+#guide-content .download-guide a:hover {
+  color: #d03233;
+  text-decoration: none;
+}
+
+#guide-content .extra-video {
+	position: relative;
+	padding-bottom: 56.25%; /* 16:9 */
+	padding-top: 25px;
+	height: 0;
+  margin: 30px auto;
+}
+
+#guide-content .extra-video iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#campaign-content {
+  padding-top: 100px;
+  background: #fff;
+  padding-bottom: 100px;
+}
+
+#campaign-content .campaign-image {
+  max-width: 100%;
+  border: 1px solid #999;
+}
+
+#campaign-content .campaign-image-container {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+#campaign-content .campaign-info svg {
+  transition: .3s transform ease-in-out;
+  float: right;
+  color: #333;
+  margin-left: 10px;
+}
+
+#campaign-content .campaign-info.collapsed svg {
+  transform: rotate(90deg);
+}
+
+#campaign-content .campaign-info {
+  background: none;
+  color: #993333;
+  font-weight: bold;
+  border: 0;
+  text-transform: uppercase;
+  padding-left: 0;
+}
+
+#campaign-content .campaign-info:focus {
+  text-align: left;
+  outline: none;
+  box-shadow: none;
+}
+
+#campaign-content #collapseCampaignInfo {
+  border: none;
+  margin-left: 2px;
+}
+
+#campaign-content #collapseCampaignInfo .card {
+  border: none;
+  padding: 0;
+}
+
+#campaign-content #collapseCampaignInfo ul {
+  list-style-type: none;
+  border: none;
+  padding-left: 0;
+}
+
+#campaign-content .campaign-row p {
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+
+#contact-section #map {
+  width: 100%;
+  height: 400px;
+}
+
+#contact-section .contact-info {
+  margin-top: 100px;
+  margin-bottom: 150px;
+}
+
+#contact-section .contact-info-text a {
+  color: #333;
+  font-weight: bold;
+}
+
+#contact-section .contact-info-text a:hover {
+  text-decoration: none;
+}
+
+#contact-section .all-button {
+  margin-top: 20px;
+}
+
+#despre-content {
+    margin-top: 80px;
+}
+
+#despre-content .small-menu {
+  text-align: center;
+  top: -40px;
+  font-family: Merriweather, serif;
+}
+
+#despre-content .small-menu .btn {
+  background: none;
+  border: 1px solid #999;
+  border-radius: 0;
+  color: #999;
+}
+
+#despre-content .small-menu .dropdown-item {
+  text-transform: capitalize;
+}
+
+#despre-content h3 {
+  text-transform: uppercase;
+  margin-top: 30px;
+  font-size: 18px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #999;
+  display: inline-block;
+}
+
+#despre-content .nav-link {
+  color: #333;
+  font-size: 16px;
+  text-transform: capitalize;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding-left: 0;
+  padding-bottom: 3px;
+}
+
+#despre-content .nav-link:hover,
+#despre-content .nav-link.active {
+  background: none;
+  color: #d03233;
+}
+
+#despre-content ul li a svg {
+  margin-right: 5px;
+}
+
+#despre-content #custom-menu-content {
+  padding-right: 30px;
+}
+
+#despre-content .despre-row {
+  margin-bottom: 80px;
+}

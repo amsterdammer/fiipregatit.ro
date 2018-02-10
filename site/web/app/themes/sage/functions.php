@@ -21,7 +21,11 @@ $sage_includes = [
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
   'lib/customizer.php', // Theme customizer
-  'lib/TemplateEngine.php'
+  'lib/TemplateEngine.php',
+  'lib/Algolia/IndexCustomFields.php',
+  'lib/Algolia/GuideIndexCustomFields.php',
+  'lib/Algolia/CampaignIndexCustomFields.php',
+  'lib/Algolia/NoOpIndexCustomFields.php',
 ];
 
 foreach ($sage_includes as $file) {
@@ -101,11 +105,14 @@ add_filter('admin_footer_text', 'remove_footer_admin');
 /**
  * Modifică pagina de login cu link și logo-ul DSU
  */
-function my_login_logo() { ?>
+use Roots\Sage\Assets;
+function my_login_logo() {
+  $asset_path = Assets\asset_path('images/Logo_DSU.svg');
+  ?>
     <style type="text/css">
         #login h1 a, .login h1 a {
           background-image:
-            url(<?php echo get_stylesheet_directory_uri(); ?>/images/logo.png);
+            url(<?=$asset_path?>);
           height:80px;
           width:100%;
           background-size: contain;
@@ -125,3 +132,13 @@ function my_login_logo_url_title() {
   return 'fiipregătit.ro';
 }
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+/**
+ *  Algolia index
+ */
+$algoliaCallback = function(array $attributes, WP_Post $post) {
+  return IndexCustomFields::get($attributes, $post)->index();
+};
+
+add_filter( 'algolia_post_shared_attributes', $algoliaCallback, 10, 2 );
+add_filter( 'algolia_searchable_post_shared_attributes', $algoliaCallback, 10, 2 );

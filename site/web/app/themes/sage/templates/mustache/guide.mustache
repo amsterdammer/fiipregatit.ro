@@ -31,7 +31,7 @@
                   data-target="#collapseOne"
                   aria-expanded="true"
                   aria-controls="collapseOne">
-                  Înainte de {{ title }}
+                  Înainte de eveniment
                   <i class="fa fa-chevron-down pull-right"></i>
                 </button>
               </h5>
@@ -50,12 +50,12 @@
             <div class="card-header" id="headingTwo">
               <h5 class="mb-0">
                 <button
-                  class="btn btn-link
-                  collapsed" data-toggle="collapse"
+                  class="btn btn-link collapsed"
+                  data-toggle="collapse"
                   data-target="#collapseTwo"
                   aria-expanded="false"
                   aria-controls="collapseTwo">
-                  În timpul {{ title }}
+                  În timpul evenimentului
                   <i class="fa fa-chevron-down pull-right"></i>
                 </button>
               </h5>
@@ -79,7 +79,7 @@
                   data-target="#collapseThree"
                   aria-expanded="false"
                   aria-controls="collapseThree">
-                  După {{ title }}
+                  După eveniment
                   <i class="fa fa-chevron-down pull-right"></i>
                 </button>
               </h5>
@@ -139,8 +139,9 @@
                     </ol>
                     <div class="carousel-inner">
                       {{# photo_gallery }}
-                        <div class="carousel-item {{# first }} active {{/ first }}">
-                          <img class="d-block w-100" src="{{ photo.url }}">
+                        <div
+                          class="carousel-item {{# first }} active {{/ first }}"
+                          style="background-image: url({{ photo }})">
                         </div>
                       {{/ photo_gallery }}
                     </div>
@@ -181,14 +182,16 @@
         </ul>
       </div>
     </div>
-    {{# pdf_page_count }}
+    {{# pdf_guide.url }}
       <div class="download-guide">
-        <a href="{{ pdf_guide.url }}" target="_blank">
+        <a href="{{ . }}" target="_blank">
           <i class="far fa-file-pdf" data-fa-transform="grow-20"></i>
           <strong>Descarcă ghidul</strong>
-          (PDF, {{ pdf_page_count }} pagini)
+          {{# pdf_size }}
+            (PDF, {{ . }})
+          {{/ pdf_size }}
         </a>
       </div>
-    {{/ pdf_page_count }}
+    {{/ pdf_guide.url }}
   </div>
 </div>

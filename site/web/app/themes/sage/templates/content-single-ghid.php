@@ -5,11 +5,15 @@
     'jumbotron',
     array(
       'show_header' => false,
-      'extra_class' => 'small-jumbotron'
+      'extra_class' => 'small-jumbotron',
+      'algolia_search' => get_search_form($echo = false)
     )
   );
 
-  $guide = \RepoManager::getGuideRepository()->getByPost($wp_query->post);
+  $guide = \RepoManager::getGuideRepository()->getByPost(
+    $wp_query->post,
+    $include_similar = true
+  );
 
   $allGuides = \RepoManager::getGuideRepository()->getList();
   $sidebarLinks = array();
@@ -18,6 +22,22 @@
       'text' => $g->getNume(),
       'href' => $g->getPermalink()
     );
+  }
+
+  $gallery = array();
+  $is_first = true;
+  $count = 0;
+  foreach ($guide->getGalerieFoto() as $photo) {
+    $gallery[] = array(
+      'photo' => $photo,
+      'idx' => $count,
+      'first' => $is_first,
+    );
+
+    if ($is_first) {
+      $is_first = false;
+    }
+    $count++;
   }
 
   TemplateEngine::get()->render(
@@ -29,30 +49,25 @@
       'after_content' => $guide->getDupaEveniment(),
       'extra_info' => $guide->getInformatiiAditionale(),
       'video' => $guide->getVideoAjutator(),
-      'photo_gallery' => array(
-        array(
-          'photo' => $guide->getGalerieFoto(),
-          'idx' => 0,
-          'first' => true
-        ),
-        array(
-          'photo' => $guide->getGalerieFoto(),
-          'idx' => 0
-        )
-      ),
+      'photo_gallery' => $gallery,
       'has_extra_info' => (
         $guide->getInformatiiAditionale()
-        && $guide->getVideoAjutator()
-        && $guide->getGalerieFoto()
+        || $guide->getVideoAjutator()
+        || $gallery
       ),
       'pdf_guide' => $guide->getGuidePDF(),
-      'pdf_page_count' => $guide->getPDFGuidePageCount(),
+      'pdf_size' => $guide->getPDFGuideSize(),
       'sidebar_links' => $sidebarLinks,
     )
   );
 
-  $recommendedGuides = array_slice($allGuides, 0, 2);
+  $recommendedGuides = $guide->getSimilarGuides();
+  if (!$recommendedGuides) {
+    $recommendedGuides = array_slice($allGuides, 0, 2);
+  }
+
   $guideProps = array();
+
   foreach ($recommendedGuides as $guide) {
     $guideProps[] = array(
       'icon' => $guide->getPictograma()->getUrl(),
@@ -68,6 +83,7 @@
       'guides' => $guideProps,
       'title' => 'Alte situații',
       'bg' => '#fff',
+      'center' => true
     )
   );
 ?>

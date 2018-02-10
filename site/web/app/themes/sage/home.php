@@ -9,7 +9,8 @@
   TemplateEngine::get()->render(
     'jumbotron',
     array(
-      'show_header' => true
+      'show_header' => true,
+      'algolia_search' => get_search_form($echo = false)
     )
   );
 
@@ -43,7 +44,7 @@
     }
 
     if ($guide->getGalerieFoto()) {
-      $imageCount++;
+      $imageCount += count($guide->getGalerieFoto());
     }
   }
 
